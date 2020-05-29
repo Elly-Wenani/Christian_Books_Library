@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN = 5000;
 
     //Variables
-    ImageView image;
-    TextView logo, dev;
-    Animation topAnim, bottomAnim;
+    private ImageView image;
+    private TextView logo, dev;
+    private Animation topAnim, bottomAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

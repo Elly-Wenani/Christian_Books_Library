@@ -6,20 +6,19 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical"
-    android:scrollbarThumbVertical="@null"
     android:scrollbarThumbHorizontal="@null"
-    tools:context=".LoginActivity">
+    android:scrollbarThumbVertical="@null"
+    tools:context=".SignUpActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp">
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:transitionName="logo_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,25 +29,14 @@
             android:id="@+id/signUpTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="USER LOGIN"
+            android:text="Sign Up"
             android:textColor="#031350"
-            android:textSize="38sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:transitionName="logo_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
-
-        <TextView
-            android:id="@+id/slogan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome back"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUpTxt" />
 
         <LinearLayout
             android:id="@+id/contentInput"
@@ -59,10 +47,25 @@
             android:paddingHorizontal="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slogan">
+            app:layout_constraintTop_toBottomOf="@+id/signUpTxt">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/user_icon"
+                    android:drawablePadding="10dp"
+                    android:hint="User name"
+                    android:inputType="textCapWords" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -70,65 +73,65 @@
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/email_icon"
+                    android:drawablePadding="10dp"
                     android:hint="Email"
                     android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/phone_icon"
+                    android:drawablePadding="10dp"
+                    android:hint="Phone number"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/password_icon"
+                    android:drawablePadding="10dp"
                     android:hint="Password"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:padding="5dp">
-
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnFloatLogin"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="true"
-                    app:elevation="4dp"
-                    app:fabCustomSize="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/rightarrowwhite_icon" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sign in"
-                    android:textColor="#031350"
-                    android:textSize="28sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="#031350"
+                android:text="Confirm"
+                android:textColor="#fff"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="32dp"
             android:orientation="vertical"
             android:paddingHorizontal="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contentInput">
 
@@ -137,44 +140,34 @@
                 android:layout_height="120dp"
                 android:padding="5dp">
 
-                <Button
-                    android:id="@+id/btnForgetPwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#00000000"
-                    android:elevation="4dp"
-                    android:text="Forgot password?"
-                    android:textAlignment="textEnd"
-                    android:textAllCaps="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
                 <TextView
                     android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="0dp"
-                    android:text="Dont have an account?"
+                    android:text="Already user?"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/btnSignUp"
+                    android:id="@+id/btnClickHere"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="8dp"
                     android:background="#00000000"
+                    android:textColor="#031350"
                     android:elevation="4dp"
-                    android:text="sign up here"
-                    android:textAlignment="textStart"
+                    android:text="click here"
                     android:textAllCaps="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>
