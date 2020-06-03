@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         else if (connected == false){
 
             new AlertDialog.Builder(this)
-                    .setMessage("Please Connect to the Internet")
+                    .setMessage("Please connect to the internet")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                         }
