@@ -20,8 +20,35 @@ public class PDFViewerActivity extends AppCompatActivity {
 
         String getItem = getIntent().getStringExtra("pdfFileName");
 
-        if (getItem.equals("How To Win Friends And Influence People")) {
-            localPdfView.fromAsset("how_to_win_friends_and_influence_people.pdf")
+        if (getItem.equals("Deeper Shopping by Dr. Myles Munroe")) {
+            localPdfView.fromAsset("DeeperShopping Christian Books_Dr. Myles Munroe.pdf")
+                    .defaultPage(0)
+                    .enableAnnotationRendering(true)
+                    .scrollHandle(new DefaultScrollHandle(this))
+                    .spacing(2)
+                    .load();
+        }
+
+        if (getItem.equals("Rediscovering The Kingdom")) {
+            localPdfView.fromAsset("Rediscovering The Kingdom.pdf")
+                    .defaultPage(0)
+                    .enableAnnotationRendering(true)
+                    .scrollHandle(new DefaultScrollHandle(this))
+                    .spacing(2)
+                    .load();
+        }
+
+        if (getItem.equals("Simply Christian")) {
+            localPdfView.fromAsset("Simply Christian_ Why Christianity Makes Sense.pdf")
+                    .defaultPage(0)
+                    .enableAnnotationRendering(true)
+                    .scrollHandle(new DefaultScrollHandle(this))
+                    .spacing(2)
+                    .load();
+        }
+
+        if (getItem.equals("Wealth Without Theft")) {
+            localPdfView.fromAsset("Wealth Without Theft_ You can be Rich without Stealing.pdf")
                     .defaultPage(0)
                     .enableAnnotationRendering(true)
                     .scrollHandle(new DefaultScrollHandle(this))
