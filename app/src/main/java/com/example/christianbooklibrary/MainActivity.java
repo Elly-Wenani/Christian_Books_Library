@@ -58,4 +58,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }, SPLASH_SCREEN);
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }
