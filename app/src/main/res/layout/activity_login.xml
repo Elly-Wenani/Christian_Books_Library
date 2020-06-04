@@ -19,7 +19,7 @@
             android:id="@+id/imgLogo"
             android:layout_width="180dp"
             android:layout_height="140dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="70dp"
             android:transitionName="logo_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
