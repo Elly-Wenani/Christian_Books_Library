@@ -35,6 +35,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
+    <TextView
+        android:id="@+id/textPleaseWaite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Please waite..."
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSeekBar" />
+
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/onlinePdfView"
         android:layout_width="match_parent"

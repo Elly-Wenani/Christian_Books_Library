@@ -31,7 +31,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
     private final String PDF_LINK = "https://drive.google.com/u/0/uc?id=1RroytkN7ybNor1I1k4lbFoYq61TRpyWZ&export=download";
     private final String MY_PDF = "book.pdf";
     private AppCompatSeekBar seekBar;
-    private TextView textView;
+    private TextView textView, textPleaseWait;
     private PDFView onlinePdfView;
 
     @Override
@@ -41,6 +41,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
 
         //Hooks for downloading pdf file to internal storage.
         textView = findViewById(R.id.textSeekBar);
+        textPleaseWait = findViewById(R.id.textPleaseWaite);
         onlinePdfView = findViewById(R.id.onlinePdfView);
 
         String getItem = getIntent().getStringExtra("onlinePdfFileName");
@@ -91,10 +92,11 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
                 try {
                     File file = getFileStreamPath(fileName);
                     if (file.exists())
-                        return true;
+                    return true;
 
                     try {
-                        /*----------------Function to exit of net is not connected-----------------*/
+
+                        /*----------------Function to exit if net is not connected-----------------*/
                         FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
                         URL u = new URL(PDF_LINK);
                         URLConnection conn = u.openConnection();
@@ -143,30 +145,24 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
     }
 
     private void openPdf(String fileName) {
+        try {
+            File file = getFileStreamPath(fileName);
 
-        File file = getFileStreamPath(fileName);
-
-        if (file.isFile()) {
-
-            try {
-                Log.e("file: ", "file: " + file.getAbsolutePath());
-                seekBar.setVisibility(View.GONE);
-                onlinePdfView.setVisibility(View.VISIBLE);
-                onlinePdfView.fromFile(file)
-                        .defaultPage(0)
-                        .enableAnnotationRendering(true)
-                        .scrollHandle(new DefaultScrollHandle(this))
-                        .spacing(2)
-                        .enableSwipe(true)
-                        .swipeHorizontal(false)
-                        .enableAntialiasing(true)
-                        .load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            initSeekBar();
-            downloadPdf(MY_PDF);
+            Log.e("file: ", "file: " + file.getAbsolutePath());
+            seekBar.setVisibility(View.GONE);
+            textPleaseWait.setVisibility(View.GONE);
+            onlinePdfView.setVisibility(View.VISIBLE);
+            onlinePdfView.fromFile(file)
+                    .defaultPage(0)
+                    .enableAnnotationRendering(true)
+                    .scrollHandle(new DefaultScrollHandle(this))
+                    .spacing(2)
+                    .enableSwipe(true)
+                    .swipeHorizontal(false)
+                    .enableAntialiasing(true)
+                    .load();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
