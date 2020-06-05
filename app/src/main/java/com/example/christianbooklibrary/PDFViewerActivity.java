@@ -20,7 +20,7 @@ public class PDFViewerActivity extends AppCompatActivity {
 
         String getItem = getIntent().getStringExtra("pdfFileName");
 
-        if (getItem.equals("Deeper Shopping by Dr. Myles Munroe")) {
+        if (getItem.equals("Deeper Shopping")) {
             localPdfView.fromAsset("DeeperShopping Christian Books_Dr. Myles Munroe.pdf")
                     .defaultPage(0)
                     .enableAnnotationRendering(true)
