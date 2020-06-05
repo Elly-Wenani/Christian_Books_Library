@@ -14,6 +14,16 @@
             android:title="Inspirational" />
 
         <item
+            android:id="@+id/nav_leadership"
+            android:icon="@drawable/inspiration_icon"
+            android:title="Leadership" />
+
+        <item
+            android:id="@+id/nav_marriage"
+            android:icon="@drawable/inspiration_icon"
+            android:title="Marriage" />
+
+        <item
             android:id="@+id/nav_prayer"
             android:icon="@drawable/pray_icon"
             android:title="Prayer" />

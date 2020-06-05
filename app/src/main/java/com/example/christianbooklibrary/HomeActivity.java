@@ -115,7 +115,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
     //Check internet connection even when connected to network.
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -160,6 +159,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
+                break;
+
+            case R.id.nav_leadership:
+                Intent leadership = new Intent(HomeActivity.this, LeadershipActivity.class);
+                startActivity(leadership);
+                //HomeActivity.this.finish();
                 break;
 
             case R.id.nav_inspirational:

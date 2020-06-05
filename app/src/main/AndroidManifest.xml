@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OnlinePdfViewerActivity"></activity>
+        <activity android:name=".LeadershipActivity"></activity>
+        <activity android:name=".OnlinePdfViewerActivity" />
         <activity android:name=".PDFViewerActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
