@@ -34,6 +34,7 @@ public class LeadershipActivity extends AppCompatActivity implements NavigationV
     //Variables
     ListView onlineListView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +64,9 @@ public class LeadershipActivity extends AppCompatActivity implements NavigationV
         navigationView.setCheckedItem(R.id.nav_leadership);
 
         //List of books titles on local device and their description, in this case the description is the author
-        String onlineBookTitle[] = {"Deeper Shopping", "Rediscovering The Kingdom", "Simply Christian", "Wealth Without Theft"};
+        String onlineBookTitle[] = {"Government", "Deeper Shopping\""};
 
-        String onlineBookDesc[] = {"Dr. Myles Munroe", "Dr. Myles Munroe", "N.T Wright", "Kolawole Oyeyemi"};
+        String onlineBookDesc[] = {"Government file", "Deep"};
 
 
         MyAdapter adapter = new MyAdapter(this, onlineBookTitle, onlineBookDesc);
@@ -75,8 +76,8 @@ public class LeadershipActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String items = onlineListView.getItemAtPosition(position).toString();
-                Intent start = new Intent(getApplicationContext(), PDFViewerActivity.class);
-                start.putExtra("pdfFileName", items);
+                Intent start = new Intent(getApplicationContext(), OnlinePdfViewerActivity.class);
+                start.putExtra("onlinePdfFileName", items);
                 startActivity(start);
             }
         });
@@ -136,4 +137,13 @@ public class LeadershipActivity extends AppCompatActivity implements NavigationV
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

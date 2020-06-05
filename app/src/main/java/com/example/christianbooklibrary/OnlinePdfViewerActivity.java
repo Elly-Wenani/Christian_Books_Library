@@ -28,7 +28,7 @@ import java.net.URLConnection;
 public class OnlinePdfViewerActivity extends AppCompatActivity {
 
     //Variables for downloading pdf file to internal storage.
-    private final String PDF_LINK = "https://drive.google.com/file/d/1RroytkN7ybNor1I1k4lbFoYq61TRpyWZ/view?usp=sharing";
+    private final String PDF_LINK = "https://drive.google.com/u/0/uc?id=1RroytkN7ybNor1I1k4lbFoYq61TRpyWZ&export=download";
     private final String MY_PDF = "book.pdf";
     private AppCompatSeekBar seekBar;
     private TextView textView;
@@ -43,7 +43,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
         textView = findViewById(R.id.textSeekBar);
         onlinePdfView = findViewById(R.id.onlinePdfView);
 
-        String getItem = getIntent().getStringExtra("pdfFileName");
+        String getItem = getIntent().getStringExtra("onlinePdfFileName");
 
         //This is the book name as it appears on the list view
         if (getItem.equals("Government")) {
@@ -90,7 +90,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
             private Boolean downloadPdf() {
                 try {
                     File file = getFileStreamPath(fileName);
-                    if (!(file.exists()))
+                    if (file.exists())
                         return true;
 
                     try {
@@ -144,22 +144,29 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
 
     private void openPdf(String fileName) {
 
-        try {
-            File file = getFileStreamPath(fileName);
-            Log.e("file: ", "file: " + file.getAbsolutePath());
-            seekBar.setVisibility(View.GONE);
-            onlinePdfView.setVisibility(View.VISIBLE);
-            onlinePdfView.fromFile(file)
-                    .defaultPage(0)
-                    .enableAnnotationRendering(true)
-                    .scrollHandle(new DefaultScrollHandle(this))
-                    .spacing(2)
-                    .enableSwipe(true)
-                    .swipeHorizontal(false)
-                    .enableAntialiasing(true)
-                    .load();
-        } catch (Exception e) {
-            e.printStackTrace();
+        File file = getFileStreamPath(fileName);
+
+        if (file.isFile()) {
+
+            try {
+                Log.e("file: ", "file: " + file.getAbsolutePath());
+                seekBar.setVisibility(View.GONE);
+                onlinePdfView.setVisibility(View.VISIBLE);
+                onlinePdfView.fromFile(file)
+                        .defaultPage(0)
+                        .enableAnnotationRendering(true)
+                        .scrollHandle(new DefaultScrollHandle(this))
+                        .spacing(2)
+                        .enableSwipe(true)
+                        .swipeHorizontal(false)
+                        .enableAntialiasing(true)
+                        .load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            initSeekBar();
+            downloadPdf(MY_PDF);
         }
     }
 }
