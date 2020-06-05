@@ -81,8 +81,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(start);
             }
         });
-
-        //connectionStatus();
     }
 
     // Adapter class for list view
@@ -164,7 +162,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_leadership:
                 Intent leadership = new Intent(HomeActivity.this, LeadershipActivity.class);
                 startActivity(leadership);
-                //HomeActivity.this.finish();
+                HomeActivity.this.finish();
                 break;
 
             case R.id.nav_inspirational:
