@@ -38,11 +38,6 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
     private TextView textView, textPleaseWait;
     private PDFView onlinePdfView;
 
-    //Test from firebase
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +55,6 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
         if (getItem.equals("Government")) {
             initSeekBar();
             downloadPdf(MY_PDF);
-        }
-
-        if (getItem.equals("From Net Test")) {
         }
     }
 
@@ -105,7 +97,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
                 try {
                     File file = getFileStreamPath(fileName);
                     if (file.exists())
-                    return true;
+                        return true;
 
                     try {
 
@@ -192,8 +184,26 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
                         }
                     })
                     .load();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //The back button has to be clicked twice before it exits
+    private long onBackPressTime;
+    private Toast backToast;
+    @Override
+    public void onBackPressed() {
+        if (onBackPressTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            backToast.cancel();
+            return;
+        }
+        else{
+            backToast = Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        onBackPressTime = System.currentTimeMillis();
     }
 }

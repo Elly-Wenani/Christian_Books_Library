@@ -3,6 +3,7 @@ package com.example.christianbooklibrary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
@@ -55,5 +56,22 @@ public class PDFViewerActivity extends AppCompatActivity {
                     .spacing(2)
                     .load();
         }
+    }
+
+    //The back button has to be clicked twice before it exits
+    private long onBackPressTime;
+    private Toast backToast;
+    @Override
+    public void onBackPressed() {
+        if (onBackPressTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            backToast.cancel();
+            return;
+        }
+        else{
+            backToast = Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        onBackPressTime = System.currentTimeMillis();
     }
 }
