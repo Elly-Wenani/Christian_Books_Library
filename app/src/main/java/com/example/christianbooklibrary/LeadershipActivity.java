@@ -64,9 +64,9 @@ public class LeadershipActivity extends AppCompatActivity implements NavigationV
         navigationView.setCheckedItem(R.id.nav_leadership);
 
         //List of books titles on local device and their description, in this case the description is the author
-        String onlineBookTitle[] = {"Government", "Deeper Shopping\""};
+        String onlineBookTitle[] = {"Government", "Deeper Shopping", "From Net Test"};
 
-        String onlineBookDesc[] = {"Government file", "Deep"};
+        String onlineBookDesc[] = {"Government file", "Deep", "Direct download"};
 
 
         MyAdapter adapter = new MyAdapter(this, onlineBookTitle, onlineBookDesc);

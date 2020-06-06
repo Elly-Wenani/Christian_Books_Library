@@ -10,12 +10,16 @@ import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnErrorListener;
+import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
+import com.github.barteksc.pdfviewer.listener.OnRenderListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
 import java.io.BufferedInputStream;
@@ -34,6 +38,12 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
     private TextView textView, textPleaseWait;
     private PDFView onlinePdfView;
 
+    //Test from firebase
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +60,9 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
         if (getItem.equals("Government")) {
             initSeekBar();
             downloadPdf(MY_PDF);
+        }
+
+        if (getItem.equals("From Net Test")) {
         }
     }
 
@@ -160,6 +173,24 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
                     .enableSwipe(true)
                     .swipeHorizontal(false)
                     .enableAntialiasing(true)
+                    .onPageError(new OnPageErrorListener() {
+                        @Override
+                        public void onPageError(int page, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Page has errors", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .onError(new OnErrorListener() {
+                        @Override
+                        public void onError(Throwable t) {
+                            Toast.makeText(getApplicationContext(), "error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .onRender(new OnRenderListener() {
+                        @Override
+                        public void onInitiallyRendered(int nbPages, float pageWidth, float pageHeight) {
+                            onlinePdfView.fitToWidth();
+                        }
+                    })
                     .load();
         } catch (Exception e) {
             e.printStackTrace();
