@@ -1,10 +1,13 @@
 package com.example.christianbooklibrary;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSeekBar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -38,6 +41,8 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
     private TextView textView, textPleaseWait;
     private PDFView onlinePdfView;
 
+    private ConstraintLayout myConstraintLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
         textView = findViewById(R.id.textSeekBar);
         textPleaseWait = findViewById(R.id.textPleaseWaite);
         onlinePdfView = findViewById(R.id.onlinePdfView);
+        myConstraintLayout = findViewById(R.id.myConstraintLayout);
 
         String getItem = getIntent().getStringExtra("onlinePdfFileName");
 
@@ -151,7 +157,7 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
 
     private void openPdf(String fileName) {
         try {
-            File file = getFileStreamPath(fileName);
+            final File file = getFileStreamPath(fileName);
 
             Log.e("file: ", "file: " + file.getAbsolutePath());
             seekBar.setVisibility(View.GONE);
@@ -168,13 +174,16 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
                     .onPageError(new OnPageErrorListener() {
                         @Override
                         public void onPageError(int page, Throwable t) {
-                            Toast.makeText(getApplicationContext(), "Page has errors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Page errors!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .onError(new OnErrorListener() {
                         @Override
                         public void onError(Throwable t) {
-                            Toast.makeText(getApplicationContext(), "error occured", Toast.LENGTH_SHORT).show();
+                            bookReDownload();
+                            if (file.exists()){
+                                file.delete();
+                            }
                         }
                     })
                     .onRender(new OnRenderListener() {
@@ -188,6 +197,20 @@ public class OnlinePdfViewerActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //This method deletes the book that did not finish downloading and re-downloads it again.
+    private void bookReDownload(){
+        new AlertDialog.Builder(this)
+                .setMessage("The previous download was interrupted. Kindly " +
+                        "press ok and open this book again to re-download!")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        OnlinePdfViewerActivity.this.finish();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     //The back button has to be clicked twice before it exits
